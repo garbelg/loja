@@ -2,16 +2,57 @@ package br.unibh.loja.entidades;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
+import javax.persistence.Version;
+@Entity
+@Table(name="tb_cliente", uniqueConstraints = {
+	    @UniqueConstraint(columnNames = { "cpf"}),@UniqueConstraint(columnNames = { "login"})
+	})
+
 public class Cliente {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
+	
+	@Column(length=100, nullable=false)
 	private String nome;
+	
+	@Column(length=15, nullable=false)
 	private String login;
+	
+	@Column(length=100, nullable=false)
 	private String senha;
+	
+	@Column(length=100, nullable=false)
 	private String perfil;
+	
+	@Version
+	private Long version;
+	
+	@Column(length=11, nullable=false)
 	private String cpf;
+	
+	@Column(length=14, nullable=true)
 	private String telefone;
+	
+	@Column(length=100, nullable=true)
 	private String email;
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name="data_nascimento", nullable=false)
 	private Date dataNascimento;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="data_cadastro", nullable=false)
 	private Date dataCadastro;
 	
 	public Cliente() {
@@ -31,6 +72,12 @@ public class Cliente {
 		this.email = email;
 		this.dataNascimento = dataNascimento;
 		this.dataCadastro = dataCadastro;
+	}
+	public Long getVersion() {
+		return version;
+	}
+	public void setVersion(Long version) {
+		this.version = version;
 	}
 	public Long getId() {
 		return id;

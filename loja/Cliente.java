@@ -3,6 +3,7 @@ package br.unibh.loja.entidades;
 import java.util.Date;
 
 public class Cliente {
+	private Long version;
 	private Long Id;
 	private String nome;
 	private String login;
