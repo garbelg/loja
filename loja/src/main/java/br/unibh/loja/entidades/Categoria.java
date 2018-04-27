@@ -8,56 +8,70 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.persistence.Version;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
+
 @Entity
-@Table(name="tb_categoria", uniqueConstraints = {
-	    @UniqueConstraint(columnNames = { "descricao"})
-	})
+@Table(name = "tb_categoria", uniqueConstraints = { @UniqueConstraint(columnNames = { "descricao" }) })
 
 public class Categoria {
-	
+
 	@Version
 	private Long version;
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(length=100, nullable=false)
+	@NotBlank
+	@Size (max=100)
+	@Pattern (regexp="[A-zÀ-ú .'-/]*",
+	message="descriçao tem caracteres invalidos")
+	@Column(length = 100, nullable = false)
 	private String descricao;
-	
-	
-	
+
 	public Categoria() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 	public Categoria(Long id, String descricao) {
 		super();
 		this.id = id;
 		this.descricao = descricao;
 	}
+
 	public Long getVersion() {
 		return version;
 	}
+
 	public void setVersion(Long version) {
 		this.version = version;
 	}
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getDescricao() {
 		return descricao;
 	}
+
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+
 	@Override
 	public String toString() {
 		return "Categoria [id=" + id + ", descricao=" + descricao + "]";
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -66,6 +80,7 @@ public class Categoria {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -87,6 +102,5 @@ public class Categoria {
 			return false;
 		return true;
 	}
-	
 
 }

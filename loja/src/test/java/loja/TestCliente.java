@@ -5,10 +5,13 @@ import static org.junit.Assert.assertNotEquals;
 
 import java.util.Date;
 
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import br.unibh.loja.entidades.Cliente;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestCliente {
 	
 	@Test

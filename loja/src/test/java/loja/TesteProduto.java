@@ -11,6 +11,7 @@ import org.junit.Test;
 import br.unibh.loja.entidades.Categoria;
 
 import br.unibh.loja.entidades.Produto;
+
 public class TesteProduto {
 	@Test
 	public void testCreateObject() {
