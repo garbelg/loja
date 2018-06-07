@@ -14,4 +14,5 @@ public interface DAO<T, K> {
 	public List<T> findAll() throws Exception;
 
 	public List<T> findByName(String name) throws Exception;
+	
 }

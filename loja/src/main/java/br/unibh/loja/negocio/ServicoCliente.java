@@ -74,4 +74,10 @@ public class ServicoCliente implements DAO<Cliente, Long> {
 		log.info("Encontrando o " + name);
 		return em.createNamedQuery("Cliente.findByName").setParameter("nome", "%" + name + "%").getResultList();
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Cliente> findByPerfil(String perfil) throws Exception {
+		log.info("Encontrando o " + perfil);
+		return em.createNamedQuery("Cliente.findByPerfil").setParameter("perfil", "%" + perfil + "%").getResultList();
+	}
 }

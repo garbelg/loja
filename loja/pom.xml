@@ -70,6 +70,8 @@
 			<artifactId>arquillian-junit-container</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+
 		<dependency>
 			<groupId>javax.transaction</groupId>
 			<artifactId>jta</artifactId>
@@ -124,7 +126,16 @@
 			<artifactId>jta</artifactId>
 			<version>1.1</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jaxrs</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-jaxrs</artifactId>
+			<version>1.5.19</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<pluginManagement>
