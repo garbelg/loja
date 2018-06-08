@@ -13,43 +13,34 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import br.unibh.loja.entidades.Cliente;
-import br.unibh.loja.negocio.ServicoCliente;
+import br.unibh.loja.entidades.Produto;
+import br.unibh.loja.negocio.ServicoProduto;
 import io.swagger.annotations.Api;
 
 @Api
-@Path("cliente")
-public class RestCliente {
-	
+@Path("produto")
+public class RestProduto {
 	@Inject
-	private ServicoCliente sc;
+	private ServicoProduto sc;
 
 	@GET
 	@Path("list")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Cliente> helloworld() throws Exception {
+	public List<Produto> listarProduto() throws Exception {
 		return sc.findAll();
 	}
 
 	@GET
 	@Path("{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Cliente listarId(@PathParam("id") final Long id) throws Exception {
+	public Produto listarId(@PathParam("id") final Long id) throws Exception {
 		return sc.find(id);
 	}
-
 	@GET
-	@Path("perfil/{perfil}")
+	@Path("categoria/{id_categoria}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Cliente> listarPerfil(@PathParam("perfil") final String perfil) throws Exception {
-		return sc.findByPerfil(perfil);
-	}
-
-	@GET
-	@Path("nome/{nome}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<Cliente> listarNome(@PathParam("nome") final String nome) throws Exception {
-		return sc.findByName(nome);
+	public List<Produto> listarCategoria(@PathParam("id_categoria") final Long id_categoria) throws Exception {
+		return sc.findByCategoria(id_categoria);
 	}
 
 
@@ -58,20 +49,20 @@ public class RestCliente {
 	  @Path("new")
 	  @Consumes(MediaType.APPLICATION_JSON)
 	  @Produces(MediaType.APPLICATION_JSON)
-	  public Cliente criarCliente(Cliente cliente) throws Exception {
-		  return sc.insert(cliente);
+	  public Produto criarProduto(Produto produto) throws Exception {
+		  return sc.insert(produto);
 	  }
 	  @PUT
 	  @Path("atualizar/{id}")
 	  @Consumes(MediaType.APPLICATION_JSON)
 	  @Produces(MediaType.APPLICATION_JSON)
-	  public Cliente atualizarCliente(@PathParam("id") final Long id, Cliente cliente) throws Exception {
-		  return sc.update(cliente);
+	  public Produto atualizarProduto(@PathParam("id") final Long id, Produto produto) throws Exception {
+		  return sc.update(produto);
 	  }
 	  @DELETE
 	  @Path("delete/{id}")
 	  @Produces(MediaType.APPLICATION_JSON)
-	  public void deletarCliente(@PathParam("id")  final Long id) throws Exception {
+	  public void deletarProduto(@PathParam("id")  final Long id) throws Exception {
 		  sc.delete(sc.find(id));
 
 	  }
